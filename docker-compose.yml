@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: webpkbep-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: thanhvinhtv1523
+      MYSQL_DATABASE: webdodientu
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - webpkbep-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Backend API
+  backend:
+    build:
+      context: ./BackEnd/server
+      dockerfile: Dockerfile
+    container_name: webpkbep-backend
+    restart: always
+    ports:
+      - "5001:5000"
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=thanhvinhtv1523
+      - DB_NAME=webdodientu
+      - EMAIL_USER=thanhlongtv152@gmail.com
+      - EMAIL_PASS=dqeytfshftluedqb
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - ./client/public/Images:/app/../../client/public/Images
+    networks:
+      - webpkbep-network
+
+  # Client (React)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: webpkbep-client
+    restart: always
+    ports:
+      - "3003:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    networks:
+      - webpkbep-network
+
+  # Admin Panel (React)
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    container_name: webpkbep-admin
+    restart: always
+    ports:
+      - "3002:3001"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+      - PORT=3001
+    depends_on:
+      - backend
+    networks:
+      - webpkbep-network
+
+networks:
+  webpkbep-network:
+    driver: bridge
+
+volumes:
+  mysql_data:

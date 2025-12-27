@@ -1,0 +1,287 @@
+
+.light_mode {
+    /* Light mode colors */
+    --text-color: #222;
+    --subheading-color: #a0a0a0;
+    --placeholder-color: #6c6c6c;
+    --primary-color: #fff;
+    --secondary-color: #e9eef6;
+    --secondary-hover-color: #dbe1ea;
+  }
+  
+  .ai-all{
+      margin: 80px auto 0;
+      max-width: 980px;
+  }
+  
+  #ai-chat {
+    --text-color: #e3e3e3;
+    --subheading-color: #828282;
+    --placeholder-color: #a6a6a6;
+    --primary-color: #242424;
+    --secondary-color: #383838;
+    --secondary-hover-color: #444;
+     background: var(--primary-color);
+  }
+  
+  .ai-chat-list .ai-message,
+  .ai-typing-form {
+    margin: 0 auto;
+    max-width: 980px;
+  }
+  
+  .ai-suggestion-list {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 9.5vh;
+    overflow: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  
+  .ai-suggestion-list .ai-suggestion {
+    cursor: pointer;
+    padding: 1.25rem;
+    width: 222px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-radius: 0.75rem;
+    justify-content: space-between;
+    background: var(--secondary-color);
+    transition: 0.2s ease;
+    margin-top: 100px;
+  }
+  
+  .ai-suggestion-list .ai-suggestion:hover {
+    background: var(--secondary-hover-color);
+  }
+  
+  .ai-suggestion-list .ai-suggestion :where(.ai-text, .ai-icon) {
+    font-weight: 400;
+    color: var(--text-color);
+  }
+  
+  .ai-suggestion-list .ai-suggestion .ai-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    font-size: 1.3rem;
+    margin-top: 2.5rem;
+    align-self: flex-end;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    color: var(--text-color);
+    background: var(--primary-color);
+  }
+  
+  .ai-chat-list {
+    padding: 2rem 1rem 12rem;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-color: #999 transparent;
+  }
+  
+  .ai-chat-list .ai-message.incoming {
+    margin-top: 1.5rem;
+  }
+  
+  .ai-chat-list .ai-message .ai-message-content {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .ai-chat-list .ai-message .ai-text {
+    color: var(--text-color);
+    white-space: pre-wrap;
+  }
+  
+  .ai-chat-list .ai-message.error .ai-text {
+    color: #e55865;
+  }
+  
+  .ai-chat-list .ai-message.loading .ai-text {
+    display: none;
+  }
+  
+  .ai-chat-list .ai-message .ai-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    align-self: flex-start;
+  }
+  
+  .ai-chat-list .ai-message.loading .ai-avatar {
+    animation: rotate 3s linear infinite;
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .ai-chat-list .ai-message .ai-icon {
+    color: var(--text-color);
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    font-size: 1.25rem;
+    margin-left: 3.5rem;
+    visibility: hidden;
+  }
+  
+  .ai-chat-list .ai-message .ai-icon.hide {
+    visibility: hidden;
+  }
+  
+  .ai-chat-list .ai-message:not(.loading, .error):hover .ai-icon:not(.hide) {
+    visibility: visible;
+  }
+  
+  .ai-chat-list .ai-message .ai-icon:hover {
+    background: var(--secondary-hover-color);
+  }
+  
+  .ai-chat-list .ai-message .ai-loading-indicator {
+    display: none;
+    gap: 0.8rem;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .ai-chat-list .ai-message.loading .ai-loading-indicator {
+    display: flex;
+  }
+  
+  .ai-chat-list .ai-message .ai-loading-indicator .ai-loading-bar {
+    height: 11px;
+    width: 100%;
+    border-radius: 0.135rem;
+    background-position: -800px 0;
+    background: linear-gradient(to right, #4285f4, var(--primary-color), #4285f4);
+    animation: loading 3s linear infinite;
+  }
+  
+  .ai-chat-list .ai-message .ai-loading-indicator .ai-loading-bar:last-child {
+    width: 70%;
+  }
+  
+  @keyframes loading {
+    0% {
+      background-position: -800px 0;
+    }
+  
+    100% {
+      background-position: 800px 0;
+    }
+  }
+  
+  .ai-typing-area {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    background: var(--primary-color);
+  }
+  
+  .ai-typing-area :where(.ai-typing-form, .ai-action-buttons) {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .ai-typing-form .ai-input-wrapper {
+    width: 100%;
+    height: 56px;
+    display: flex;
+    position: relative;
+  }
+  
+  .ai-typing-form .ai-typing-input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 1.1rem 4rem 1.1rem 1.5rem;
+    border-radius: 100px;
+    background: var(--secondary-color);
+  }
+  
+  .ai-typing-form .ai-typing-input:focus {
+    background: var(--secondary-hover-color);
+  }
+  
+  .ai-typing-form .ai-typing-input::placeholder {
+    color: var(--placeholder-color);
+  }
+  
+  .ai-typing-area .ai-icon {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary-color);
+    transition: 0.2s ease;
+  }
+  
+  .ai-typing-area .ai-icon:hover {
+    background: var(--secondary-hover-color);
+  }
+  
+  .ai-typing-form #send-ai-message-button {
+    position: absolute;
+    right: 0;
+    outline: none;
+    border: none;
+    transform: scale(0);
+    background: transparent;
+    transition: transform 0.2s ease;
+  }
+  
+  .ai-typing-form .ai-typing-input:valid ~ #send-ai-message-button {
+    transform: scale(1);
+  }
+  
+  .ai-typing-area .ai-disclaimer-text {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    color: var(--placeholder-color);
+  }
+  
+  /* Responsive media query code for small screen */
+  @media (max-width: 768px) {
+    .ai-header :is(.ai-title, .ai-subtitle) {
+      font-size: 2rem;
+      line-height: 2.6rem;
+    }
+  
+    .ai-header .ai-subtitle {
+      font-size: 1.6rem;
+    }
+  }
+  
+  

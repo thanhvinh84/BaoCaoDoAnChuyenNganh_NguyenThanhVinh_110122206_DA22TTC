@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* Thanh cuộn ngang cho nội dung admin */
+#wrapper {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+}
+
+.container-fluid {
+  min-width: 1000px;
+}
+
+/* Style thanh cuộn ngang */
+#wrapper::-webkit-scrollbar {
+  height: 12px;
+}
+
+#wrapper::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 6px;
+}
+
+#wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #4e73df, #224abe);
+  border-radius: 6px;
+}
+
+#wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #224abe, #1a3a8f);
+}

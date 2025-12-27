@@ -1,0 +1,15 @@
+const express = require('express');
+const router = express.Router();
+const billController = require('../controllers/hoadonController');
+
+router.get('/api/getalldonhang', billController.getAllBill);
+router.delete('/api/deletedonhang/:ma_don_hang', billController.deleteBill);
+router.get('/api/gethd/:ma_don_hang', billController.getBillById);
+router.get('/api/searchhd/:searchTerm', billController.searchBillByName);
+router.put('/api/updatehd/:ma_don_hang', billController.updateBill);
+router.get('/api/gethoadon/:ngay_dat_hang', billController.getHoaDonByNgayDat);
+router.get('/api/gethoadon/trangthai/:trang_thai', billController.getHoaDonByTrangThai);
+router.get('/api/thongke/doanhthu/:year', billController.getDoanhThuTheoThang);
+router.get('/api/thongke/trangthai', billController.getThongKeTrangThai);
+router.get('/api/thongke/tongquan', billController.getThongKeTongQuan);
+module.exports = router;
